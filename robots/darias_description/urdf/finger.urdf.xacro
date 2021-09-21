@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+
+<robot>
+  <property name="proximal_roll" value="0"/>
+  <property name="proximal_pitch" value="-1.57"/>
+  <property name="proximal_yaw" value="-1.57"/>
+
+  <property name="proximal_x" value="-0.085"/>
+  <property name="proximal_y" value="0.015"/>
+  <property name="proximal_z" value="-0.03"/>
+  
+  <property name="distal_roll" value="0"/>
+  <property name="distal_pitch" value="-1.57"/>
+  <property name="distal_yaw" value="-1.55"/>
+
+  <property name="distal_x" value="-0.14"/>
+  <property name="distal_y" value="0.015"/>
+  <property name="distal_z" value="-0.03"/>
+
+  <property name="tip_roll" value="0"/>
+  <property name="tip_pitch" value="-1.57"/>
+  <property name="tip_yaw" value="0"/>
+
+  <property name="tip_x" value="-0.02"/>
+  <property name="tip_y" value="-0.163"/>
+  <property name="tip_z" value="-0.03"/>
+
+
+  <macro name = "dlr_hit_hand_finger" params = "name parent *origin">
+    
+    <!-- spread joint (first finger joint) --> 
+    <joint name = "${name}S" type = "revolute">
+      <parent link  = "${parent}" />
+      <child link = "${name}_spread_link" />
+      <insert_block name = "origin" />
+      <axis xyz = "0 0 1" />
+      <limit lower="-0.261" upper="0.2618" effort="100" velocity="100"/> 
+      <dynamics damping="${testing_damping_value}"/>
+    </joint>
+    
+    <transmission name="${name}_spread_trans" >
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}S"/>
+      <actuator name="${name}_spread_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+     </actuator>
+    </transmission>
+    
+    <link name = "${name}_spread_link">
+      <inertial>
+        <origin xyz = "0.004 0 0" rpy = "0 0 0" />
+        <mass value = "0.1" />
+        <cuboid_inertia_def width = "0.025" length = "0.033" height = "0.04" mass = "0.1" />
+      </inertial>
+      <visual>
+        <origin xyz = "0 0 0" rpy = "0 0 0" />
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/finger_base.stl" />
+        </geometry>
+        <material name = "HandGray" />
+      </visual>
+      <collision>
+        <origin xyz = "0 0 0" rpy = "0 0 0" /> 
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/finger_base.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_spread_link">
+      <material value="${hand_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+    
+    <!-- proximal joint ( second finger link ) -->
+    <joint name = "${name}P" type = "revolute">
+      <parent link = "${name}_spread_link" />
+      <child link = "${name}_proximal_link" />
+      <origin xyz = "0 0 0" rpy = "1.570796 0 0" />
+      <axis xyz = "0 0 1" />
+      <limit lower="0.087" upper="1.4835" effort="100" velocity="100" />  
+      <dynamics damping="${testing_damping_value}"/>
+    </joint>
+    
+    <transmission name="${name}_proximal_trans" >
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}P"/>
+      <actuator name="${name}_proximal_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <link name = "${name}_proximal_link">
+      <inertial>
+        <origin xyz = "0.035 -0.02 0" rpy = "0 0 0" /> 
+        <mass value = "0.1" />
+        <cuboid_inertia_def width = "0.041" length = "0.082" height = "0.036" mass = "0.1" />
+      </inertial>
+      <visual>
+        <origin xyz = "${proximal_x} ${proximal_y}  ${proximal_z}" rpy = "${proximal_roll} ${proximal_pitch}  ${proximal_yaw} " /> 
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_proximalp.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name = "HandGray" />
+      </visual>
+      <collision>
+        <origin xyz = "${proximal_x} ${proximal_y}  ${proximal_z}" rpy = "${proximal_roll} ${proximal_pitch}  ${proximal_yaw}" /> 
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_proximalp.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_proximal_link">
+      <material value="${hand_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+    
+    <!-- distal joint (third finger link ) -->
+    <joint name = "${name}D" type = "revolute">
+      <parent link = "${name}_proximal_link" />
+      <child link = "${name}_distal_link" />
+      <origin xyz = "0.055 0 0" rpy = "0 0 0" />
+      <axis xyz = "0 0 1" />
+      <limit lower="0.087" upper="1.1345" effort="100" velocity="100" />  
+      <dynamics damping="${testing_damping_value}"/>
+    </joint>
+    
+    <transmission name="${name}_distal_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}D"/>
+      <actuator name="${name}_distal_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <link name = "${name}_distal_link">
+      <inertial>
+        <origin xyz = "0.015 -0.01 0" rpy = "0 0 0" />
+        <mass value = "0.1" />
+        <cuboid_inertia_def width = "0.028" length = "0.052" height = "0.03" mass = "0.1" />
+      </inertial>
+      <visual>
+        <origin xyz = "${distal_x} ${distal_y}  ${distal_z}" rpy = "${distal_roll} ${distal_pitch}  ${distal_yaw}" />
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_middlep.stl" scale="0.001 0.001 0.001" />  
+        </geometry>
+        <material name = "HandGray" />
+      </visual>
+      <collision>
+        <origin xyz = "${distal_x} ${distal_y}  ${distal_z}" rpy = "${distal_roll} ${distal_pitch}  ${distal_yaw}" />
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_middlep.stl" scale="0.001 0.001 0.001"/>  
+        </geometry>
+      </collision>
+    </link>
+    
+    <gazebo reference="${name}_distal_link">
+      <material value="${hand_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+    
+    <!-- tip joint (last finger link) this one is coupled with distalJoint and can not be moved on its own but just mimics the distalJoint -->
+    <joint name = "${name}_tip_joint" type = "revolute">
+      <parent link = "${name}_distal_link" />
+      <child link = "${name}_tip_link" />
+      <origin xyz = "0.025 0 0" rpy = "0 0 -1.57" />
+      <axis xyz = "0 0 1" />
+      <limit lower="0.087266463" upper="1.134464014" effort="100" velocity="100" />  
+      <dynamics damping="${testing_damping_value}"/>
+      <mimic  joint = "${name}D"/>
+    </joint>
+    
+    <transmission name="${name}_tip_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_tip_joint"/> 
+      <actuator name="${name}_tip_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <link name = "${name}_tip_link">
+      <inertial>
+        <origin xyz = "0 0.014 0" rpy = "0 0 0" /> 
+        <mass value = "0.1" />
+        <cuboid_inertia_def width = "0.050" length = "0.029" height = "0.027" mass = "0.1" />
+      </inertial>
+      <visual>
+        <origin xyz = "${tip_x} ${tip_y}  ${tip_z}" rpy = "${tip_roll} ${tip_pitch}  ${tip_yaw} " /> 
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_distalp.stl" scale="0.001 0.001 0.001" />
+        </geometry>
+        <material name = "HandGray" />
+      </visual>
+      <collision>
+        <origin xyz = "${tip_x} ${tip_y}  ${tip_z}" rpy = "${tip_roll} ${tip_pitch}  ${tip_yaw} " /> 
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/fore_distalp.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+   
+    <gazebo reference="${name}_tip_link">
+      <material value="${hand_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+    
+    <!--joint name = "${name}_joint_3" type = "fixed">
+      <parent link = "${name}_tip_link" />
+      <child link = "${name}_tip" />
+      <origin xyz = "0 0.0295 0" rpy = "0 1.57 1.57" />
+    </joint-->
+    
+
+  </macro>
+
+</robot>

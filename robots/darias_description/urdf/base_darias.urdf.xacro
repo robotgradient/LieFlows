@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+  <!-- base properties not adjusted to the real robot, maybe need to do this later -->
+  <property name="base_size_x" value="0.2"/>
+  <property name="base_size_y" value="0.2"/>
+  <property name="base_size_z" value="1.5"/>
+  <property name="cal_base_to_left_arm_z" value="0.3289008879"/> <!-- not used now need to measure offset-->
+  <property name="base_offset_z" value="0.085"/>
+  <property name="base_offset_x" value="-0.1"/>
+  <property name="base_mass" value="200.0"/> <!-- just set to a high value, maybe need to adjust this later-->
+  <property name="base_cg_x" value="0"/>
+  <property name="base_cg_y" value="0"/>
+  <property name="base_cg_z" value="0.15"/>
+
+  <macro name="darias_base" params="name *origin">
+    
+    <link name="world"/>
+
+    <joint name="fixed" type="fixed">
+       <origin xyz="0.0 0.0 ${base_size_z-cal_base_to_left_arm_z} "
+            rpy="0.0 0.0 0.0"/>
+       <parent link="world"/>
+       <child link="${name}"/>
+    </joint>
+
+    <link name="${name}">
+      <inertial>
+        <mass value="${base_mass}" />
+        <origin xyz="${base_cg_x} ${base_cg_y} ${base_cg_z}" rpy="0 0 0"/>
+        <!-- need to check all this inertia stuff -->
+        <cuboid_inertia_def length="${0.25 * base_size_x}"
+                            width="${base_size_y}"
+                            height="${0.25 * base_size_z}"
+                            mass="${base_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="${base_offset_x} 0 ${base_offset_z - 0.5 * base_size_z+cal_base_to_left_arm_z}"
+                rpy="0 0 0"/>
+        <geometry>
+          <box size="${base_size_x} ${base_size_y} ${base_size_z}"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
+
+      <collision>
+        <origin xyz="${base_offset_x} 0 ${base_offset_z - 0.5 * base_size_z+cal_base_to_left_arm_z}"
+                rpy="0 0 0"/>
+        <geometry>
+          <box size="${base_size_x} ${base_size_y} ${base_size_z}"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}">
+      <material value="Gazebo/Black"/>
+      <turnGravityOff>0</turnGravityOff> <!-- use gravity for the base even if disabled for the arms in order to prevent darias from falling-->
+    </gazebo>
+
+  </macro>
+
+</robot>
+

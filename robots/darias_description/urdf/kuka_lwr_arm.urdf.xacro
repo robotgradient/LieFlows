@@ -1,0 +1,435 @@
+<?xml version="1.0"?>
+<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface">
+
+
+  <!-- all masses and inertias are not really adjusted to darias by now still need to do this sometime -->
+  <!-- so by now this model is mainly just a kinematic one -->
+
+  <property name="arm_elem_base_mass" value="1.0"/> <!-- 2.0all masses -->
+  <property name="arm_elem_link_mass" value="1.0"/>
+  <property name="arm_elem_ball_link_mass" value="1.0"/>
+  <property name="arm_elem_end_link_mass" value="1.0"/>
+  <property name="safety_controller_k_pos" value="100" />
+  <property name="safety_controller_k_vel" value="2" />
+  <property name="joint_damping" value="0.1" /> 
+  <property name="arm_material" value="Gazebo/Blue" />
+  <property name="arm_velocity_scale_factor" value="1"/>
+  <property name="effort_limit" value="10000.0"/>
+
+  <property name="turn_gravity_off_" value="1" /> <!-- use 1 for true and 0 for false ,yet the controller can't compensate gravity - why ? --> 
+ 
+ <!-- Arm Macro : right is either -1 (for right arm) or 1 (for left arm) -->
+  <macro name="kuka_lwr_arm" params="parent name right tool_name *origin">
+
+    <material name="Blue_pastel">
+      <color rgba="0.482 0.8 0.894 0.85"/>
+    </material>
+
+    <material name="white_clean">
+      <color rgba="0.98 0.94 0.84 1."/>
+    </material>
+    
+    <!-- base_joint -->
+    <joint name="${parent}_${name}_base_joint" type="fixed">
+      <insert_block name="origin"/>
+      <parent link="${parent}"/>
+      <child link="calib_${name}_base_link"/>
+    </joint>
+
+    <link name="calib_${name}_base_link">
+      <inertial>
+        <mass value="${arm_elem_base_mass}"/>
+        <origin xyz="0 0 0.055" rpy="0 0 0"/>
+        <cylinder_inertia_def radius="0.06" length="0.11"
+                              mass="${arm_elem_base_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_base_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_base_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="calib_${name}_base_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+
+    <!-- SFE joint (first joint of the arm )-->
+    <joint name="${name}_SFE" type="revolute"> <!-- former revolute -->
+      <origin xyz="0 0 0.11" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967059" upper="2.967059"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 110 * M_PI / 180}" /> <!-- 204 -->
+      <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+                         soft_upper_limit="${168 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="calib_${name}_base_link"/>
+      <child link="${name}_1_link"/>
+    </joint>
+
+    <link name="${name}_1_link">
+      <inertial>
+        <mass value="${arm_elem_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 0 0.130"/>
+        <cuboid_inertia_def length="0.12" width="0.06" height="0.260"
+                            mass="${arm_elem_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_a_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_a_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_1_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+ <transmission name="${name}_0_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_SFE"/>
+  <actuator name="${name}_0_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- SAA joint (second joint of the arm )-->
+    <joint name="${name}_SAA" type="revolute">
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <axis xyz="0 -1 0"/>
+      <limit lower="-2.094395" upper="2.094395"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 110 * M_PI / 180}" /> <!-- effort 306 -->
+      <safety_controller soft_lower_limit="${-118 * M_PI / 180}"
+                         soft_upper_limit="${118 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_1_link"/>
+      <child link="${name}_2_link"/>
+    </joint>
+
+    <link name="${name}_2_link">
+      <inertial>
+        <mass value="${arm_elem_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 0.06 ${0.130 - 0.06}"/>
+        <cuboid_inertia_def length="0.12" width="0.06" height="0.260"
+                            mass="${arm_elem_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0.2" rpy="${M_PI} 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_b_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.2" rpy="${M_PI} 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_b_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_2_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+
+ <transmission name="${name}_1_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_SAA"/>
+  <actuator name="${name}_1_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- HR joint (third joint of the arm )-->
+    <joint name="${name}_HR" type="revolute">
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967059" upper="2.967059"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 130 * M_PI / 180}" /> <!-- 204 -->
+      <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+                         soft_upper_limit="${168 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_2_link"/>
+      <child link="${name}_3_link"/>
+    </joint>
+
+    <link name="${name}_3_link">
+      <inertial>
+        <mass value="${arm_elem_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 0.06 0.130"/>
+        <cuboid_inertia_def length="0.12" width="0.06" height="0.260"
+                            mass="${arm_elem_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_a_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_a_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_3_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+ <transmission name="${name}_2_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_HR"/>
+  <actuator name="${name}_2_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- EB joint (fourth joint of the arm )-->
+    <joint name="${name}_EB" type="revolute">
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="-2.094395" upper="2.094395"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 130 * M_PI / 180}" /> <!-- 306 -->
+      <safety_controller soft_lower_limit="${-118 * M_PI / 180}"
+                         soft_upper_limit="${118 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_3_link"/>
+      <child link="${name}_4_link"/>
+    </joint>
+
+    <link name="${name}_4_link">
+      <inertial>
+        <mass value="${arm_elem_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 -0.06 ${0.130 - 0.06}"/>
+        <cuboid_inertia_def length="0.12" width="0.06" height="0.2600"
+                            mass="${arm_elem_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0.2" rpy="0 ${M_PI} ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_b_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0.2" rpy="0 ${M_PI} ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_b_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_4_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+
+ <transmission name="${name}_3_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_EB"/>
+  <actuator name="${name}_3_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- WR joint (fifth joint of the arm )-->
+    <joint name="${name}_WR" type="revolute">
+      <origin xyz="0 0 0.20" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967059" upper="2.967059"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 130 * M_PI / 180}" /> <!-- 204 -->
+      <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+                         soft_upper_limit="${168 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_4_link"/>
+      <child link="${name}_5_link"/>
+    </joint>
+
+    <link name="${name}_5_link">
+      <inertial>
+        <mass value="${arm_elem_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 0 0.124"/>
+        <cuboid_inertia_def length="0.12" width="0.06" height="0.248"
+                            mass="${arm_elem_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry name="${name}_5_geom">
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_last_convex.stl"/>
+        </geometry>
+        <material name="Blue"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_segment_last_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_5_link">
+      <material value="${arm_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+  <transmission name="${name}_4_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_WR"/>
+  <actuator name="${name}_4_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- WFE joint (six joint of the arm )-->
+    <joint name="${name}_WFE" type="revolute">
+      <origin xyz="0 0 0.19" rpy="0 0 0"/>
+      <axis xyz="0 -1 0"/>
+      <limit lower="-2.094395" upper="2.094395"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 180 * M_PI / 180}" /> <!-- 306 -->
+      <safety_controller soft_lower_limit="${-118 * M_PI / 180}"
+                         soft_upper_limit="${118 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_5_link"/>
+      <child link="${name}_6_link"/>
+    </joint>
+
+    <link name="${name}_6_link">
+      <inertial>
+        <mass value="${arm_elem_ball_link_mass}"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0625"/>
+        <cuboid_inertia_def length="0.125" width="0.125" height="0.125"
+                            mass="${arm_elem_ball_link_mass}"/>
+      </inertial>
+
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_wrist_convex.stl"/>
+        </geometry>
+        <material name="HandGray"/>
+      </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${M_PI}"/>
+        <geometry>
+          <mesh filename="package://darias_description/meshes/arm/convex/arm_wrist_convex.stl"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${name}_6_link">
+      <material value="Gazebo/White"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+
+    <transmission name="${name}_5_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_WFE"/>
+  <actuator name="${name}_5_motor">
+    <hardwareInterface>EffortJointInterface</hardwareInterface>
+    <mechanicalReduction>1.0</mechanicalReduction>
+  </actuator>
+</transmission>
+
+    <!-- WAA joint (seventh joint of the arm )
+TODO: check effort limit +204-->
+    <joint name="${name}_WAA" type="revolute">
+      <origin xyz="0.0 0 0.078" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967059" upper="2.967059"
+             effort="${effort_limit +204}"  velocity="${arm_velocity_scale_factor * 180 * M_PI / 180}" /> 
+      <safety_controller soft_lower_limit="${-168 * M_PI / 180}"
+                         soft_upper_limit="${168 * M_PI / 180}"
+                         k_position="${safety_controller_k_pos}"
+                         k_velocity="${safety_controller_k_vel}"/>
+      <dynamics damping="${joint_damping}"/>
+      <parent link="${name}_6_link"/>
+     <child link="${name}_endeffector_link"/>  
+    </joint> 
+
+
+    <transmission name="${name}_6_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${name}_WAA"/>
+      <actuator name="${name}_6_motor">
+      <hardwareInterface>EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1.0</mechanicalReduction>
+      </actuator>
+    </transmission>
+   
+    
+
+    <!-- the inertial here needs too be modified as this link actually has no real mass but ros_control needs an inertial...-->
+    <link name="${name}_endeffector_link" > 
+      <inertial>
+           <mass value="1"/>
+           <origin rpy="0 0 0" xyz="0 0 0.0625"/>
+           <cuboid_inertia_def length="0.125" width="0.125" height="0.125" mass="${arm_elem_ball_link_mass}"/>
+     </inertial>
+    </link>
+
+    <gazebo reference="${name}_endeffector_link">
+      <material value="Gazebo/White"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>
+    </gazebo>
+
+  </macro>
+
+</robot>
+

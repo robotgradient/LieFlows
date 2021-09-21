@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot name="wall_with_hole">
+
+   <material name="red_pastel">
+        <color rgba="0.894 0.447 0.388 1."/>
+  </material>
+
+  <link name="world"/>
+
+  <joint name="joint_w_b" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="1.8 0.0 0.0"/>
+    <parent link="world"/>
+    <child link="base"/>
+  </joint>
+
+
+  <link name="base">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0. 0 0"/>
+        <mass value="0."/>
+        <inertia ixx="1.0175" ixy="0.0" ixz="0.0" iyy="1.025" iyz="0.0" izz="1.02"/>
+      </inertial>
+      <visual>
+      <!--<origin rpy="0.0 0.0 0.0" xyz="1.5 0.0 0.0"/>-->
+        <geometry>
+          <box size="0.44 4.0 0.1"/>
+        </geometry>
+        <material name="red_pastel"/>
+      </visual>
+    <collision>
+      <!--<origin rpy="0.0 0.0 0.0" xyz="1.5 0.0 0.0"/>-->
+      <geometry>
+          <box size="0.4 4.0 0.1"/>
+      </geometry>
+    </collision>
+  </link>
+  <static>1</static>
+
+  <joint name="joint_b_1" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="1.45 -1.05 0.0"/>
+    <parent link="world"/>
+    <child link="piece1"/>
+  </joint>
+
+
+  <link name="piece1">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0. 0. 0"/>
+        <mass value="0."/>
+        <inertia ixx="1.0175" ixy="0.0" ixz="0.0" iyy="1.025" iyz="0.0" izz="1.02"/>
+      </inertial>
+      <visual>
+        <!--<origin rpy="0.0 0.0 0.0" xyz="-0.3 -0.55 0"/>-->
+        <geometry>
+          <box size="0.27 1.9 0.1"/>
+          <!--<box size="0.3 1.9 0.1"/>-->
+        </geometry>
+        <material name="red_pastel"/>
+      </visual>
+      <collision>
+        <!--<origin rpy="0.0 0.0 0.0" xyz="-0.3 -0.55 0"/>-->
+      <geometry>
+          <box size="0.27 1.9 0.1"/>
+          <!--<box size="0.3 1.9 0.1"/>-->
+      </geometry>
+    </collision>
+  </link>
+  <static>1</static>
+
+
+  <joint name="joint_b_12" type="fixed">
+    <origin rpy="0.0 0.0 0.0" xyz="1.45 1.05 0.0"/>
+    <parent link="world"/>
+    <child link="piece2"/>
+  </joint>
+
+
+  <link name="piece2">
+      <inertial>
+        <origin rpy="0 0 0" xyz="-0.3 0.55 0"/>
+        <mass value="0."/>
+        <inertia ixx="1.0175" ixy="0.0" ixz="0.0" iyy="1.025" iyz="0.0" izz="1.02"/>
+      </inertial>
+      <visual>
+        <geometry>
+           <box size="0.27 1.9 0.1"/>
+          <!--<box size="0.3 1.9 0.1"/>-->
+        </geometry>
+        <material name="red_pastel"/>
+      </visual>
+      <collision>
+        <geometry>
+           <box size="0.27 1.9 0.1"/>
+          <!--<box size="0.3 1.9 0.1"/>-->
+        </geometry>
+      </collision>
+  </link>
+  <static>1</static>
+
+</robot>

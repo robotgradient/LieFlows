@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fb2c6792-ad08-4756-ad0c-aa8859b20b16" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/LieFlows.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dataset/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dataset/generic_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dataset/s2_lasa_dataset.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/base_dynamic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/linear_dynamics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/second_linear_dynamics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/darias_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/robot_model.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/loading_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/loading_models/generic_manifold_iflow.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/diffeomorphic_net.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/dynamic_net.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/coupling.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/icoupling.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/neural_splines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/permutation.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/made.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/masked_layers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/soft_made.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/fcnn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/rbfn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/rffn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/linear.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/rational_quadratic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_dynamic_flow.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_neural_flows.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/S2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/s2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/se2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/se3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/so2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/so3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/_base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/s2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/se2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/se3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/so2.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/so3.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/utils.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/trainers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/trainers/train_velocity_models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/euler_angles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/generic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/jac_hess.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/math.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/savers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/se2_evaluations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/test_area.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/utils/typechecks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/vector_fields_visualization.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_euclidean.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_latent_distr.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_s2_trajectory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_trajectories.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/ReadMe.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/config/darias.rviz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias.rviz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_description.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_no_hands_rviz.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_rviz.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/Copyright.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_base_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_flanche_angle_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_flanche_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_a_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_b_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_last_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_wrist_convex.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Finger.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Palm_Dual.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Palm_Quad.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Finger_L1_Gen2.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Finger_L2_Gen2.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Palm_Dual_Gen2.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/finger_base.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_distalp.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_middlep.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_proximalp.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/forecover.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/lefthandbase.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/righthandbase.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/finger_tip.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_distalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_middlep.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_proximalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_distalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_middlep.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_proximalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_distalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_middlep.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_proximalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/righthandbase.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_distalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_middlep.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_proximalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_distalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_middlep.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_proximalp.iv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Finger.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Palm_Dual.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Palm_Quad.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/package.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_clean.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_clean.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_left.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_left_arm.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_no_hands.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_no_hands.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_with_hand_clean.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/iiwa_table.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/left_arm_darias.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/base_darias.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/darias.gazebo" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/finger.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/gazebo.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/kuka_lwr_arm.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/left_hand.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/right_hand.urdf.xacro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/util_defs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/3_link_robot.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/3_link_robot_single.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot_and_wall.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot_ros.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_boturdf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/se2_planar_bot.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/wall_with_hole.urdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_coupling_baselines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_dynamics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1yRuVKfaPREyIFJtJNXE5OfDIzs" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts/s2_svf" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts/s2_svf" />
+      <recent name="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines" />
+      <recent name="$PROJECT_DIR$/liesvf/trainers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.learn_s2_dynamics">
+    <configuration name="learn_s2_coupling_baselines" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LieFlows" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/s2_svf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/s2_svf/learn_s2_coupling_baselines.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="learn_s2_dynamics" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LieFlows" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/s2_svf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/s2_svf/learn_s2_dynamics.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="learn_s2_neuralsplines" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LieFlows" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/s2_svf" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="s2_coupling" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="LieFlows" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.learn_s2_dynamics" />
+        <item itemvalue="Python.learn_s2_coupling_baselines" />
+        <item itemvalue="Python.s2_coupling" />
+        <item itemvalue="Python.learn_s2_neuralsplines" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb2c6792-ad08-4756-ad0c-aa8859b20b16" name="Changes" comment="" />
+      <created>1632226744378</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632226744378</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/visualization/vector_fields_visualization.py</url>
+          <line>31</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/visualization/vector_fields_visualization.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/visualization/vector_fields_visualization.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/loading_models/generic_manifold_iflow.py</url>
+          <line>37</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/loading_models/generic_manifold_iflow.py</url>
+          <line>38</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/rffn.py</url>
+          <line>68</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

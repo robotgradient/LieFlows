@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+
+<robot name = "dlr_hit_2_left_hand">
+
+  <include filename="$(find darias_description)/urdf/finger.urdf.xacro"/>
+  
+  <!-- properties of the hand -->
+  <property name="hand_material" value="Gazebo/White" />
+  <property name="testing_damping_value" value="0.005"/> <!-- may not fit for Hit hand 2 - need to check this -->
+  <property name="palm_roll" value="1.57"/>
+  <property name="palm_pitch" value="0"/>
+  <property name="palm_yaw" value="1.57"/>
+  <property name="palm_x" value="0.02"/>
+  <property name="palm_y" value="-0.007"/>
+  <property name="palm_z" value="0.025"/>
+
+  <macro name = "dlr_hit_2_left_hand" params = "name parent arm_dir *origin">
+    
+    <!-- palm -->
+
+    <joint name = "${name}_mount_joint" type = "fixed">
+      
+     
+      <limit lower="${-170 * M_PI / 180}" upper="${170 * M_PI / 180}"
+             effort="${effort_limit}" velocity="${arm_velocity_scale_factor * 180 * M_PI / 180}" />
+      <parent link = "${parent}" />
+      <child link = "${name}_palm" />
+      <insert_block name = "origin" />
+    </joint>
+
+
+    <link name = "${name}_palm">
+      <inertial>
+        <origin xyz = "-0.004 0.002 0.076" rpy = "0 0 0" /> 
+        <mass value = "0.5" />
+        <cuboid_inertia_def width = "0.122" length = "0.082" height = "0.165" mass = "0.5"/>
+      </inertial>
+      <visual>
+        <origin xyz = "${palm_x} ${palm_y}  ${palm_z}" rpy = "${palm_roll} ${palm_pitch}  ${palm_yaw} " />
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/lefthandbase.stl"/> 
+        </geometry>
+        <material name = "HandGray" />
+      </visual>
+      <collision>
+        <origin xyz = "${palm_x} ${palm_y}  ${palm_z}" rpy = "${palm_roll} ${palm_pitch}  ${palm_yaw}" />
+        <geometry>
+          <mesh filename = "package://darias_description/meshes/hand/lefthandbase.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <gazebo reference="${name}_palm">
+      <material value="${hand_material}"/>
+      <turnGravityOff>${turn_gravity_off_}</turnGravityOff>      
+    </gazebo>
+
+    <!-- Little Finger -->
+    <dlr_hit_hand_finger name = "${name}_SM" parent = "${name}_palm">
+      <origin xyz = "0.000971571 0.043396306 0.095043545" rpy = "1.570796 -1.536488 1.570796" /> 
+    </dlr_hit_hand_finger>
+
+    <!-- Ring Finger -->
+    <dlr_hit_hand_finger name = "${name}_RI" parent = "${name}_palm">
+      <origin xyz = "-0.002529881 0.016800135 0.114043545" rpy = "1.570796 -1.536488 1.570796" />
+    </dlr_hit_hand_finger>
+
+    <!-- Middle Finger -->
+    <dlr_hit_hand_finger name = "${name}_MI" parent = "${name}_palm">
+      <origin xyz = " -0.0037 -0.01 0.1190 " rpy = "1.570796 -1.536488 1.570796" /> 
+    </dlr_hit_hand_finger>
+    
+    <!-- Index Finger --> 
+    <dlr_hit_hand_finger name = "${name}_IN" parent = "${name}_palm">
+      <origin xyz = " -0.002529881 -0.036800135 0.108743545" rpy = "1.570796 -1.536488 1.570796" /> 
+    </dlr_hit_hand_finger>
+
+    <!-- Thumb --> 
+    <dlr_hit_hand_finger name = "${name}_TH" parent = "${name}_palm">
+      <origin xyz = "0.062569057 -0.044544548 0.080044647" rpy="0.0 -0.959927 -0.60796" /> 
+    </dlr_hit_hand_finger>
+
+  </macro>
+  
+</robot>

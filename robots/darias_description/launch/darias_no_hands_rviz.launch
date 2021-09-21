@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+ <param name="robot_description"
+    command="$(find xacro)/xacro.py '$(find darias_description)/robots/darias_no_hands.urdf.xacro'" />
+
+   <!-- send fake joint values -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="FALSE"/>
+  </node> -->
+
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node> 
+
+ <node name="rviz" pkg="rviz" type="rviz" args="-d $(find darias_description)/launch/darias.rviz"/>
+  
+</launch>
+
