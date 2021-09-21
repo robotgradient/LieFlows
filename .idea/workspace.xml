@@ -5,167 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb2c6792-ad08-4756-ad0c-aa8859b20b16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LieFlows.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dataset/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dataset/generic_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dataset/s2_lasa_dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/base_dynamic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/linear_dynamics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/dynamic_systems/second_linear_dynamics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/darias_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/kinematics/robot_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/loading_models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/loading_models/generic_manifold_iflow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/diffeomorphic_net.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/dynamic_net.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/coupling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/icoupling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/neural_splines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/flows/permutation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/made.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/masked_layers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/made/soft_made.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/fcnn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/rbfn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/nn/rffn.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/linear.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/invertible_nn/splines/rational_quadratic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_dynamic_flow.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_neural_flows.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/S2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/_base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/_base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/s2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/se2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/se3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/so2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/numpy/so3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/_base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/s2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/se2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/se3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/so2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/so3.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/riemannian_manifolds/liegroups/torch/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/trainers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/trainers/train_velocity_models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/euler_angles.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/generic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/jac_hess.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/math.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/savers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/se2_evaluations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/test_area.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/utils/typechecks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/vector_fields_visualization.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_euclidean.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_latent_distr.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_s2_trajectory.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liesvf/visualization/visualize_trajectories.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/ReadMe.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/config/darias.rviz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias.rviz" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_description.launch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_no_hands_rviz.launch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/launch/darias_rviz.launch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/Copyright.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_base_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_flanche_angle_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_flanche_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_a_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_b_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_segment_last_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/arm/convex/arm_wrist_convex.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Finger.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Palm_Dual.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/collision/SAKE_Palm_Quad.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Finger_L1_Gen2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Finger_L2_Gen2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/ezgripper_gen2/SAKE_Palm_Dual_Gen2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/finger_base.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_distalp.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_middlep.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/fore_proximalp.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/forecover.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/lefthandbase.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/hand/righthandbase.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/finger_tip.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_distalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_middlep.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/fore_proximalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_distalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_middlep.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/little_proximalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_distalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_middlep.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/middle_proximalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/righthandbase.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_distalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_middlep.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/ring_proximalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_distalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_middlep.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/iv_meshes/thumb_proximalp.iv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Finger.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Palm_Dual.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/meshes/visual/SAKE_Palm_Quad.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/package.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_clean.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_clean.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_left.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_left_arm.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_no_hands.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_no_hands.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/darias_with_hand_clean.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/iiwa_table.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/robots/left_arm_darias.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/base_darias.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/darias.gazebo" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/finger.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/gazebo.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/kuka_lwr_arm.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/left_hand.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/right_hand.urdf.xacro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/darias_description/urdf/util_defs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/3_link_robot.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/3_link_robot_single.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot_and_wall.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_bot_ros.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/4_link_planar_boturdf.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/se2_planar_bot.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/robots/planar_bot/urdf/wall_with_hole.urdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_coupling_baselines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_dynamics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" beforeDir="false" afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liesvf/trainers/train_velocity_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/liesvf/trainers/train_velocity_models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_coupling_baselines.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_coupling_baselines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_dynamics.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_dynamics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,9 +133,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.learn_s2_dynamics" />
+        <item itemvalue="Python.learn_s2_neuralsplines" />
         <item itemvalue="Python.learn_s2_coupling_baselines" />
         <item itemvalue="Python.s2_coupling" />
-        <item itemvalue="Python.learn_s2_neuralsplines" />
       </list>
     </recent_temporary>
   </component>

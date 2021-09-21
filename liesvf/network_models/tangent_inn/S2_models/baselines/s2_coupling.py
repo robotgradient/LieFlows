@@ -9,7 +9,7 @@ from liesvf.utils import get_jacobian
 
 
 class S2CouplingFlows(nn.Module):
-    def __init__(self, depth=7, modeltype=1, hidden_units = 128, dim=2):
+    def __init__(self, depth=10, modeltype=1, hidden_units = 128, dim=2):
         super(S2CouplingFlows, self).__init__()
 
         self.depth = depth

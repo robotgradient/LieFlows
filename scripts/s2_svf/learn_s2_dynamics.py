@@ -19,6 +19,10 @@ weight_decay = 0.000001
 #weight_decay = 0.01
 ## training variables ##
 nr_epochs = 40000
+## Clip Gradient ##
+clip_gradient=True
+clip_value_grad=0.1
+
 
 ######### GPU/ CPU #############
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
@@ -57,6 +61,11 @@ if __name__ == '__main__':
             optimizer.zero_grad()
             loss = goto_train(msvf, local_x, local_y) + 10*fix_center(msvf, dim=dim, device=device)
             loss.backward(retain_graph=True)
+            if clip_gradient:
+                torch.nn.utils.clip_grad_norm_(
+                    msvf.parameters(),
+                    clip_value_grad
+                )
             optimizer.step()
 
         ## Validation ##
@@ -67,7 +76,7 @@ if __name__ == '__main__':
             if PLOT_2D:
                 #fig = plt.figure(1)
                 plt.clf()
-                min_max = [[-np.pi/2, -np.pi/2],[np.pi/2, np.pi/2]]
+                min_max = [[-np.pi, -np.pi],[np.pi, np.pi]]
                 vis.visualize_vector_field(msvf, device, min_max=min_max)
 
                 trj = data.train_data[0]
