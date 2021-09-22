@@ -31,7 +31,7 @@ model_save_file = 'dynamic_s2.pth'
 model_save_file = os.path.join(dirname, model_save_file)
 
 if __name__ == '__main__':
-    filename = 'Sshape'
+    filename = 'NShape'
     data = s2_lasa_dataset.V_S2LASA(filename)
     dim = data.dim
 

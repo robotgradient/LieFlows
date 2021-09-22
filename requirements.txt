@@ -1,6 +1,7 @@
 torch
 torchvision
 torchdiffeq
+tensorboard
 scipy
 matplotlib
 sklearn

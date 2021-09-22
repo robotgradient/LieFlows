@@ -1,7 +1,7 @@
 """Implementations of permutation-like transforms."""
 
 import torch
-from iflow import is_positive_int
+from liesvf.utils.typechecks import is_positive_int
 import torch.nn as nn
 
 __all__ = ['RandomPermutations']

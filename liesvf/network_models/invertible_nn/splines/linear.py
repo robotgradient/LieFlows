@@ -1,4 +1,4 @@
-from iflow.utils import math as math
+from liesvf.utils import math as math
 
 import torch
 from torch.nn import functional as F

@@ -1,12 +1,7 @@
 import numpy as np
 import torch
-from iflow.models.dynamic_systems.base_dynamic import DynamicSystem
-import torch.nn.functional as F
-
-from iflow.models import normalize_vector
-
-from iflow.models import FCNN, RBF, gaussian
-from iflow.models.flows import RFFN
+from liesvf.dynamic_systems.base_dynamic import DynamicSystem
+from liesvf.network_models.invertible_nn import FCNN, RBF, gaussian
 
 
 class SecondOrderLinearDynamics(DynamicSystem):

@@ -34,7 +34,7 @@ if __name__ == '__main__':
     dim = data.dim
 
     ######### Model #########
-    manifold = riemannian_manifolds.SE2()
+    manifold = riemannian_manifolds.SE2Map()
     dynamics = dynamic_systems.ScaledLinearDynamics(dim = dim)
     bijective_mapping = SE2_models.SE2DynamicFlows()
 

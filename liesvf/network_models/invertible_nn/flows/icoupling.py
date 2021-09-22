@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
-from iflow.models import get_jacobian
+from liesvf.utils import get_jacobian
 
 class IflowCouplingLayer(nn.Module):
 

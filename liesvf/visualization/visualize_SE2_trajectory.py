@@ -1,12 +1,12 @@
 import torch
 import numpy as np
-from iflow.utils.generic import to_numpy, to_torch
+from liesvf.utils.generic import to_numpy, to_torch
 import matplotlib.pyplot as plt
 
 from itertools import product, combinations
 from math import acos, atan2, cos, pi, sin
 
-from iflow.liegroups.numpy import SE2
+from liesvf.riemannian_manifolds.liegroups.numpy import SE2
 
 
 def plot_SE2_frame(H, ax, alpha = 0.3, colors=0):

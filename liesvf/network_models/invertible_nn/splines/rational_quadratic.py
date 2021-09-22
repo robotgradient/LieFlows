@@ -1,7 +1,7 @@
 import torch
 from torch.nn import functional as F
 
-from iflow.utils import math as math
+from liesvf.utils import math as math
 import numpy as np
 
 from .base import InputOutsideDomain

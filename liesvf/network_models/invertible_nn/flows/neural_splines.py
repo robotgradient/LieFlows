@@ -4,11 +4,11 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from iflow.models import get_jacobian
+from liesvf.utils import get_jacobian
 import torch.nn.functional as F
 
-from iflow.models.splines import linear_spline, rational_quadratic_spline, unconstrained_rational_quadratic_spline
-from iflow.models.made import MADE, SoftMADE, RbfMADE
+from liesvf.network_models.invertible_nn.splines import linear_spline, rational_quadratic_spline, unconstrained_rational_quadratic_spline
+from liesvf.network_models.invertible_nn.made import MADE, SoftMADE, RbfMADE
 
 
 DEFAULT_MIN_BIN_WIDTH = 1e-3

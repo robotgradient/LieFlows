@@ -4,12 +4,8 @@ import torch.nn.functional as F
 
 from .masked_layers import _get_input_degrees
 from .masked_layers import MaskedLinear, MaskedFeedforwardBlock, MaskedResidualBlock, MaskedSoftFeedforwardBlock, MaskedClampedLinear
-
-from iflow.models.nn import gaussian,quadratic,inverse_quadratic,inverse_multiquadric, linear
-
+from liesvf.network_models.invertible_nn.nn import gaussian,quadratic,inverse_quadratic,inverse_multiquadric, linear
 import numpy as np
-
-
 
 
 class RbfMADE(nn.Module):

@@ -3,7 +3,7 @@ import os
 import torch
 import matplotlib.pyplot as plt
 
-from iflow.utils import R_2_axis_angle
+from liesvf.utils import R_2_axis_angle
 
 from liesvf.visualization import visualize_SE3_traj
 from liesvf.dataset.generic_dataset import VDataset
