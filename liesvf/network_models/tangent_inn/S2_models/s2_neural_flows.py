@@ -9,7 +9,7 @@ from liesvf.utils import get_jacobian
 
 
 class S2NeuralFlows(nn.Module):
-    def __init__(self, depth=4, modeltype=0,  hidden_units = 128, dim=2, bins=40):
+    def __init__(self, depth=8, modeltype=0,  hidden_units = 128, dim=2, bins=30):
         super(S2NeuralFlows, self).__init__()
 
         self.depth = depth

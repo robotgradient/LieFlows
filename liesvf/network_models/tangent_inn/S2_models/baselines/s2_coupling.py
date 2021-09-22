@@ -37,7 +37,7 @@ class S2CouplingFlows(nn.Module):
         chain = []
         for i in range(self.depth):
             chain.append(self.main_layer())
-            chain.append(models.RandomPermutations(self.dim))
+            #chain.append(models.RandomPermutations(self.dim))
         chain.append(self.main_layer())
         return chain
 
