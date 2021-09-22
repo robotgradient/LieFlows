@@ -133,3 +133,4 @@ dmypy.json
 *.pth
 
 .idea
+.idea/*
