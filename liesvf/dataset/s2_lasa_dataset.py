@@ -37,7 +37,6 @@ class V_S2LASA():
         r = np.linalg.norm(self.trajs_normal, axis=-1)
         r_max = np.max(r)
         self.alpha = (np.pi-0.1)/r_max
-        self.alpha = 1.
         self.train_data = []
         for i in range(self.trajs_normal.shape[0]):
             self.train_data.append(self.alpha*self.trajs_normal[i, ...])

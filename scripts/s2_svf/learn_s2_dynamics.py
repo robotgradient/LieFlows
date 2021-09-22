@@ -1,46 +1,43 @@
-import os, sys, time
+import os
 import numpy as np
 import torch
 import torch.optim as optim
 from liesvf.dataset import s2_lasa_dataset
-from torch.utils.data import DataLoader
-
 from liesvf import dynamic_systems, riemannian_manifolds, loading_models
 from liesvf.network_models.tangent_inn import S2_models
 from liesvf.trainers import goto_train, fix_center
-
 import matplotlib.pyplot as plt
 from liesvf import visualization as vis
-
-percentage = .99
-## optimization ##
-lr = 0.001
-weight_decay = 0.000001
-#weight_decay = 0.01
-## training variables ##
-nr_epochs = 40000
-## Clip Gradient ##
-clip_gradient=True
-clip_value_grad=0.1
+from torch.utils.tensorboard import SummaryWriter
+from liesvf.trainers import regression_trainer
 
 
 ######### GPU/ CPU #############
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
-#device = torch.device('cpu')
-plot_resolution = 0.01
 
+## Training parameters ##
+percentage = .99
+lr = 0.001
+batch_size = 64
+weight_decay = 0.000001
+nr_epochs = 40000
+clip_gradient=True
+clip_value_grad=0.1
+
+## Logger & Visualization parameters ##
+log_dir = 'runs/dynamics_s2'
+dirname = os.path.abspath(os.path.dirname(__file__))
+model_save_file = 'dynamic_s2.pth'
+model_save_file = os.path.join(dirname, model_save_file)
 
 if __name__ == '__main__':
     filename = 'Sshape'
     data = s2_lasa_dataset.V_S2LASA(filename)
     dim = data.dim
-    batch_size =100
-    params = {'batch_size': batch_size, 'shuffle': True}
-    dataloader = DataLoader(data.dataset, **params)
 
     ######### Model #########
-    manifold = riemannian_manifolds.S2()
-    dynamics = dynamic_systems.ScaledLinearDynamics(dim = 2)
+    manifold = riemannian_manifolds.S2Map()
+    dynamics = dynamic_systems.ScaledLinearDynamics(dim = dim)
     bijective_mapping = S2_models.S2DynamicFlows()
 
     model = loading_models.MainManifoldModel(device=device, bijective_map = bijective_mapping, dynamics = dynamics, manifold= manifold)
@@ -49,65 +46,27 @@ if __name__ == '__main__':
     ########## Optimization ################
     params = list(msvf.parameters())
     optimizer = optim.Adamax(params, lr = lr, weight_decay= weight_decay)
-    #######################################
-    for i in range(nr_epochs):
-        ## Training ##
-        for local_x, local_y in dataloader:
 
-            local_x = local_x.to(device)
-            local_x.requires_grad = True
-            local_y = local_y.to(device)
+    ## Prepare Training ##
+    def loss_fn(model,x,y):
+        return goto_train(model, x, y) + fix_center(msvf, dim=dim, device=device)
 
-            optimizer.zero_grad()
-            loss = goto_train(msvf, local_x, local_y) + 10*fix_center(msvf, dim=dim, device=device)
-            loss.backward(retain_graph=True)
-            if clip_gradient:
-                torch.nn.utils.clip_grad_norm_(
-                    msvf.parameters(),
-                    clip_value_grad
-                )
-            optimizer.step()
+    def visualization_fn(model):
+        plt.clf()
+        min_max = [[-np.pi, -np.pi], [np.pi, np.pi]]
+        vis.visualize_vector_field(model, device, min_max=min_max)
 
-        ## Validation ##
-        if i%60 == 0:
-            print(loss)
+        for i in range(len(data.train_data)):
+            trj = data.train_data[i]
+            plt.plot(trj[:, 0], trj[:, 1])
 
-            PLOT_2D = True
-            if PLOT_2D:
-                #fig = plt.figure(1)
-                plt.clf()
-                min_max = [[-np.pi, -np.pi],[np.pi, np.pi]]
-                vis.visualize_vector_field(msvf, device, min_max=min_max)
+        plt.ion()
+        plt.show()
+        plt.pause(0.001)
 
-                trj = data.train_data[0]
-                plt.plot(trj[:,0], trj[:,1])
+    logger = SummaryWriter(log_dir=log_dir)
 
-                plt.ion()
-                plt.show()
-                plt.pause(0.001)
+    msvf, loss = regression_trainer(model=msvf, loss_fn = loss_fn, optimizer=optimizer, dataset= data.dataset, n_epochs=nr_epochs,
+                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=5, logger= logger, model_save_file=None)
 
-            # PLOT_S2= False
-            # if PLOT_S2:
-            #     pv.set_plot_theme("document")
-            #     #p = pv.Plotter(off_screen=True)
-            #     p = pv.Plotter()
-            #
-            #     sphere = vis.visualize_sphere(p)
-            #     vis.visualize_s2_tangent_trajectories(p,data.train_data[0])
-            #
-            #     vis.visualize_s2_angle_vector_field(p, iflow, torch=True, device=device)
-            #
-            #     p.show()
-                # p.show(screenshot='plot_{}.png'.format(i))
-                # plt.imshow(p.image)
-                # plt.show()
-
-
-        ## Save Model ##
-        # if i%10==0:
-        #     dirname = os.path.abspath(os.path.dirname(__file__+'/../../../../'))
-        #     folder = 'models/s2_models'
-        #     dirname = os.path.join(dirname, folder)
-        #     save_file = '00_s2_lasa_model_{}.pth'.format(i)
-        #     filename = os.path.join(dirname, save_file)
-        #     s2_model.save_model(filename)
+    logger.close()

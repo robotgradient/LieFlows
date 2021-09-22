@@ -1,3 +1,1 @@
-from .liegroups import *
-
-from .S2 import S2
+from .maps import SE3Map, SE2Map, S2Map

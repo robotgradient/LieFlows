@@ -12,5 +12,8 @@ from .visualize_s2_trajectory import (visualize_s2_tangent, visualize_sphere, vi
                                       visualize_s2_angle_vector_field, visualize_s2_tangent_trajectories,
                                       visualize_s2_tangent_trajectories2, visualize_S2_vector_field)
 
+from .visualize_SE2_trajectory import *
+from .visualize_SE3_trajectory import *
+
 
 from .visualize_euclidean import generate_second_order_traj

@@ -154,7 +154,7 @@ class SO3Matrix(_base.SOMatrixBase):
 
             A = hacha * \
                 torch.eye(cls.dof, dtype=phi.dtype).unsqueeze_(
-                    dim=0).expand_as(jac[large_angle_inds])
+                    dim=0).expand_as(jac[large_angle_inds]).to(phi)
             B = (1. - hacha) * utils.outer(axis, axis)
             C = -ha * cls.wedge(axis)
 

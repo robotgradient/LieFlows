@@ -2,7 +2,7 @@ import torch
 import matplotlib.pyplot as plt
 
 
-def visualize_trajectories(val_trajs, iflow, device, fig_number=1):
+def visualize_trajectories(val_trajs, vector_field, device, fig_number=1):
     dim = val_trajs[0].shape[1]
 
     plt.figure(fig_number, figsize=(20, int(10 * dim))).clf()
@@ -12,7 +12,7 @@ def visualize_trajectories(val_trajs, iflow, device, fig_number=1):
         n_trj = trj.shape[0]
         y0 = trj[0, :]
         y0 = torch.from_numpy(y0[None, :]).float().to(device)
-        traj_pred = iflow.generate_trj( y0, T=n_trj)
+        traj_pred = vector_field.generate_trj( y0, T=n_trj).squeeze()
         traj_pred = traj_pred.detach().cpu().numpy()
 
         for j in range(dim):

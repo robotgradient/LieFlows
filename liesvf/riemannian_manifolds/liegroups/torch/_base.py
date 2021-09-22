@@ -110,12 +110,15 @@ class SOMatrixBase(_base.SOMatrixBase):
         else:
             shape_check.fill_(True)
 
+        shape_check = shape_check.cpu()
+
         # Determinants of each matrix in the batch should be 1
-        det_check = utils.isclose(mat.__class__(
-            np.linalg.det(mat.detach().cpu().numpy())), 1.)
+        one = torch.ones(1)
+        det_check = utils.isclose(torch.Tensor(
+            np.linalg.det(mat.detach().cpu().numpy())), one)
 
         # The transpose of each matrix in the batch should be its inverse
-        inv_check = utils.isclose(mat.transpose(2, 1).bmm(mat),
+        inv_check = utils.isclose(mat.transpose(2, 1).bmm(mat).cpu(),
                                   torch.eye(cls.dim, dtype=mat.dtype)).sum(dim=1).sum(dim=1) \
                     == cls.dim * cls.dim
 
@@ -365,7 +368,8 @@ class SEMatrixBase(_base.SEMatrixBase):
         rot_check = cls.RotationType.is_valid_matrix(
             mat[:, 0:cls.dim - 1, 0:cls.dim - 1])
 
-        return shape_check & bottom_check & rot_check
+        check = shape_check.cpu() & bottom_check.cpu() & rot_check
+        return check
 
     def normalize(self, inds=None):
         self.rot.normalize(inds)
