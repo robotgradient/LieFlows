@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb2c6792-ad08-4756-ad0c-aa8859b20b16" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_baselines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_piecewiselinear.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" beforeDir="false" afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/baselines/s2_coupling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_neural_flows.py" beforeDir="false" afterPath="$PROJECT_DIR$/liesvf/network_models/tangent_inn/S2_models/s2_neural_flows.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/s2_svf/learn_s2_neuralsplines.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/se3_svf/learn_pour_splines.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/se3_svf/learn_pour_splines.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/se3_svf/test_trained_models/load_and_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/se3_svf/test_trained_models/load_and_test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +44,7 @@
       <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.learn_pour_splines">
+  <component name="RunManager" selected="Python.load_and_test">
     <configuration name="learn_pour_splines" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LieFlows" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -157,8 +152,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.learn_pour_splines" />
         <item itemvalue="Python.load_and_test" />
+        <item itemvalue="Python.learn_pour_splines" />
         <item itemvalue="Python.learn_s2_dynamics" />
         <item itemvalue="Python.s2_dynamic_flow" />
         <item itemvalue="Python.learn_s2_baselines" />

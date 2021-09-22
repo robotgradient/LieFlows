@@ -11,6 +11,7 @@ from liesvf.trainers import goto_train, fix_center, regression_trainer
 from liesvf.network_models.tangent_inn import SE3_models
 
 from liesvf import visualization as vis
+from liesvf.utils import to_torch
 
 ######### GPU/ CPU #############
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
@@ -40,8 +41,10 @@ if __name__ == '__main__':
     manifold = riemannian_manifolds.SE3Map()
     dynamics = dynamic_systems.ScaledLinearDynamics(dim = dim)
     bijective_mapping = SE3_models.SE3NeuralFlows()
+    H_origin = to_torch(data.goal_H, device)
 
-    model = loading_models.MainManifoldModel(device=device, bijective_map = bijective_mapping, dynamics = dynamics, manifold= manifold)
+    model = loading_models.MainManifoldModel(device=device, bijective_map = bijective_mapping, dynamics = dynamics,
+                                             manifold= manifold, H_origin=H_origin)
     msvf = model.get_msvf()
 
     ########## Optimization ################

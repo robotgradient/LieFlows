@@ -23,7 +23,7 @@ if __name__ == '__main__':
     load_file = os.path.join(dirname, load_file)
     load_params = load_torch_file(load_file)
     if MODEL=='Neural Splines':
-        manifold = riemannian_manifolds.SE3()
+        manifold = riemannian_manifolds.SE3Map()
         dynamics = dynamic_systems.ScaledLinearDynamics(dim = 6)
         bijective_mapping = SE3_models.SE3NeuralFlows()
 
