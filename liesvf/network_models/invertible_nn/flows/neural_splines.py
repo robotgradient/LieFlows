@@ -31,10 +31,10 @@ class AutoregressiveTransform(nn.Module):
         self.reverse_order = list(np.argsort(order))
 
     def forward(self, x, context=None):
-        x = x[:,self.order]
+        #x = x[:,self.order]
         autoregressive_params = self.autoregressive_net(x, context)
         y = self._elementwise_forward(x, autoregressive_params)
-        y = y[:,self.reverse_order]
+        #y = y[:,self.reverse_order]
         return y
 
     def backwards(self, x, context=None):

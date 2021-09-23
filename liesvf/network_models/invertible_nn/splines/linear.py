@@ -8,7 +8,7 @@ from .base import InputOutsideDomain
 
 
 def linear_splines(inputs, unnormalized_pdf,
-                  left=0., right=1., bottom=0., top=1.):
+                  left=-1., right=1., bottom=-1., top=1.):
     """
     Reference:
     > Müller et al., Neural Importance Sampling, arXiv:1808.03856, 2018.
@@ -53,7 +53,7 @@ def linear_splines(inputs, unnormalized_pdf,
 
 def linear_spline(inputs, unnormalized_pdf,
                   inverse=False,
-                  left=0., right=1., bottom=0., top=1.):
+                  left=-1., right=1., bottom=-1., top=1.):
     """
     Reference:
     > Müller et al., Neural Importance Sampling, arXiv:1808.03856, 2018.
@@ -63,17 +63,8 @@ def linear_spline(inputs, unnormalized_pdf,
         print('Input Outside Domain. Return')
         return inputs
 
-    # if not inverse and min_bool or max_bool:
-    #     print('Input Outside Domain. Return')
-    #     return inputs
-    # elif inverse and min_bool or max_bool:
-    #     print('Input Outside Domain. Return')
-    #     return inputs
 
-    if inverse:
-        inputs = (inputs - bottom) / (top - bottom)
-    else:
-        inputs = (inputs - left) / (right - left)
+    inputs = (inputs - left) / (right - left)
 
     num_bins = unnormalized_pdf.size(-1)
 
@@ -83,40 +74,20 @@ def linear_spline(inputs, unnormalized_pdf,
     cdf[..., -1] = 1.
     cdf = F.pad(cdf, pad=(1, 0), mode='constant', value=0.0)
 
-    if inverse:
-        inv_bin_idx = math.searchsorted(cdf, inputs)
 
-        bin_boundaries = (torch.linspace(0, 1, num_bins+1)
-                          .view([1] * inputs.dim() + [-1])
-                          .expand(*inputs.shape, -1))
+    bin_pos = inputs * num_bins
 
-        slopes = ((cdf[..., 1:] - cdf[..., :-1])
-                  / (bin_boundaries[..., 1:] - bin_boundaries[..., :-1]))
-        offsets = cdf[..., 1:] - slopes * bin_boundaries[..., 1:]
+    bin_idx = torch.floor(bin_pos).long()
+    bin_idx[bin_idx >= num_bins] = num_bins - 1
 
-        inv_bin_idx = inv_bin_idx.unsqueeze(-1)
-        input_slopes = slopes.gather(-1, inv_bin_idx)[..., 0]
-        input_offsets = offsets.gather(-1, inv_bin_idx)[..., 0]
+    alpha = bin_pos - bin_idx.float()
 
-        outputs = (inputs - input_offsets) / input_slopes
-        outputs = torch.clamp(outputs, 0, 1)
-    else:
-        bin_pos = inputs * num_bins
+    input_pdfs = pdf.gather(-1, bin_idx[..., None])[..., 0]
 
-        bin_idx = torch.floor(bin_pos).long()
-        bin_idx[bin_idx >= num_bins] = num_bins - 1
+    outputs = cdf.gather(-1, bin_idx[..., None])[..., 0]
+    outputs += alpha * input_pdfs
+    outputs = torch.clamp(outputs, 0, 1)
 
-        alpha = bin_pos - bin_idx.float()
 
-        input_pdfs = pdf.gather(-1, bin_idx[..., None])[..., 0]
-
-        outputs = cdf.gather(-1, bin_idx[..., None])[..., 0]
-        outputs += alpha * input_pdfs
-        outputs = torch.clamp(outputs, 0, 1)
-
-    if inverse:
-        outputs = outputs * (right - left) + left
-    else:
-        outputs = outputs * (top - bottom) + bottom
-
+    outputs = outputs * (top - bottom) + bottom
     return outputs

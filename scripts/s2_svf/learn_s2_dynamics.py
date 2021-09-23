@@ -11,7 +11,7 @@ from liesvf import visualization as vis
 from torch.utils.tensorboard import SummaryWriter
 from liesvf.trainers import regression_trainer
 import pyvista as pv
-from liesvf.utils import to_torch,to_numpy
+from liesvf.utils import to_torch, to_numpy
 
 
 ######### GPU/ CPU #############
@@ -27,7 +27,7 @@ clip_gradient=True
 clip_value_grad=0.1
 
 ## Logger & Visualization parameters ##
-letter = 'WShape'
+letter = 'NShape'
 log_dir = 'runs/dynamics_s2'
 dirname = os.path.abspath(os.path.dirname(__file__))
 model_save_file = letter + '_dynamic_s2.pth'
@@ -91,6 +91,6 @@ if __name__ == '__main__':
     logger = SummaryWriter(log_dir=log_dir)
 
     msvf, loss = regression_trainer(model=msvf, loss_fn = loss_fn, optimizer=optimizer, dataset= data.dataset, n_epochs=nr_epochs,
-                       batch_size=batch_size, device=device, vis_fn=vis_fn_sphere, vis_freq=50, logger= logger, model_save_file=model_save_file)
+                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=50, logger= logger, model_save_file=model_save_file)
 
     logger.close()

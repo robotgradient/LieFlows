@@ -13,26 +13,26 @@ from liesvf.trainers import regression_trainer
 
 
 ######### GPU/ CPU #############
-device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
+device = 'cpu'#torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Training parameters ##
 percentage = .99
 lr = 0.001
 batch_size = 64
-weight_decay = 0.01
+weight_decay = 0.00001
 nr_epochs = 40000
 clip_gradient=True
 clip_value_grad=0.1
 
 ## Logger & Visualization parameters ##
-log_dir = 'runs/dynamics_s2'
+letter = 'Sshape'
+log_dir = 'runs/piecewise_s2'
 dirname = os.path.abspath(os.path.dirname(__file__))
-model_save_file = 'dynamic_s2.pth'
+model_save_file = letter + '_piecewise_s2.pth'
 model_save_file = os.path.join(dirname, model_save_file)
 
 if __name__ == '__main__':
-    filename = 'NShape'
-    data = s2_lasa_dataset.V_S2LASA(filename)
+    data = s2_lasa_dataset.V_S2LASA(letter)
     dim = data.dim
 
     ######### Model #########
@@ -67,6 +67,6 @@ if __name__ == '__main__':
     logger = SummaryWriter(log_dir=log_dir)
 
     msvf, loss = regression_trainer(model=msvf, loss_fn = loss_fn, optimizer=optimizer, dataset= data.dataset, n_epochs=nr_epochs,
-                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=5, logger= logger, model_save_file=None)
+                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=100, logger= logger, model_save_file=None)
 
     logger.close()

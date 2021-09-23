@@ -67,7 +67,7 @@ class MADE(nn.Module):
         self.blocks = nn.ModuleList(blocks)
 
         # Final layer.
-        self.final_layer = MaskedLinear(
+        self.final_layer = MaskedResidualBlock(
             in_degrees=prev_out_degrees,
             out_features=features * output_multiplier,
             autoregressive_features=features,
@@ -105,42 +105,21 @@ class SoftMADE(nn.Module):
         super().__init__()
 
 
-        ## Fix weights for the input layer ##
-        self.sigma = np.ones(features) * sigma
-        self.coeff = np.random.normal(0.0, 1.0, (hidden_features, features))
-        self.coeff = self.coeff / self.sigma.reshape(1, len(self.sigma))
-        self.offset = 2.0 * np.pi * np.random.rand(1, hidden_features)
-
         ## Context Layer ##
         if context_features is not None:
             self.context_layer = nn.Linear(context_features, hidden_features)
 
         ## Initial layer ##
-        self.initial_layer = MaskedClampedLinear(
+        self.initial_layer = MaskedLinear(
             in_degrees=_get_input_degrees(features),
             out_features=hidden_features,
             autoregressive_features=features,
             random_mask=random_mask,
-            is_output=False,
-            weights= self.coeff,
-            bias_values = self.offset)
+            is_output=False)
 
-        # blocks = []
-        # block_constructor = MaskedResidualBlock
-        #
-        # prev_out_degrees = self.initial_layer.degrees
-        # for _ in range(num_blocks):
-        #     blocks.append(
-        #         block_constructor(
-        #             in_degrees=prev_out_degrees,
-        #             autoregressive_features=features,
-        #             context_features=context_features,
-        #             random_mask=random_mask,
-        #             activation=activation
-        #         )
-        #     )
-        #     prev_out_degrees = blocks[-1].degrees
-        # self.blocks = nn.ModuleList(blocks)
+
+        #self.initial_layer = nn.Linear(features, hidden_features)
+        #self.final_layer = nn.Linear(hidden_features, features * output_multiplier)
 
         ## Final layer ##
         prev_out_degrees = self.initial_layer.degrees
@@ -150,22 +129,15 @@ class SoftMADE(nn.Module):
             autoregressive_features=features,
             random_mask=random_mask,
             is_output=True,
-            bias = False
+            bias = True
         )
 
+        nn.init.zeros_(self.initial_layer.weight.data)
         nn.init.zeros_(self.final_layer.weight.data)
 
     def forward(self, inputs, context=None):
         outputs = self.initial_layer(inputs)
-
-
-        # if context is not None:
-        #     outputs += self.context_layer(context)
-
-        # for block in self.blocks:
-        #     outputs = block(outputs, context)
-
-        outputs = torch.exp(-(outputs)**2)
+        outputs = torch.tanh(outputs)
         outputs = self.final_layer(outputs)
         return outputs
 

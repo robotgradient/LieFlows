@@ -1,5 +1,5 @@
 import torch
-from liesvf.riemannian_manifolds.liegroups.torch import SE3, S2_V2
+from liesvf.riemannian_manifolds.liegroups.torch import SE3, S2_V2, SE2
 from liesvf.utils.geometry import invert_H
 
 
@@ -7,8 +7,7 @@ class SE3Map():
     def __init__(self):
         self.dim = 6
         self.manifold_dim = 16
-        self.manifold_shape = [2,2]
-
+        self.manifold_shape = [4,4]
 
     def LogMap(self, H, H_origin):
         H_origin_inv = invert_H(H_origin)
@@ -29,12 +28,21 @@ class SE2Map():
     def __init__(self):
         self.dim = 3
         self.manifold_dim = 9
+        self.manifold_shape = [3,3]
 
     def LogMap(self, H, H_origin):
-        print("To be code")
+        H_origin_inv = invert_H(H_origin)
+        oH = H_origin_inv @ H
+
+        x_hat = SE2.from_matrix(oH).log()
+        if x_hat.dim() == 1:
+            x_hat = x_hat.unsqueeze(0)
+        return x_hat
 
     def Pullback(self, dx, H_origin):
-        print("To be code")
+        A = SE2.from_matrix(H_origin)
+        Adj_lw = A.adjoint()
+        return torch.einsum('qx,bx->bq', Adj_lw, dx)
 
 
 class S2Map():

@@ -70,3 +70,12 @@ class RandomPermutations(Permutations):
         if not is_positive_int(features):
             raise ValueError('Number of features must be a positive integer.')
         super().__init__(torch.randperm(features), dim)
+
+
+if __name__ == '__main__':
+    perm_i = torch.Tensor([1,0]).to(torch.long)
+    net = Permutations(perm_i, 1)
+    x = torch.Tensor([[1,2],[4,5]])
+    y = net(x)
+    print(x)
+    print(y)

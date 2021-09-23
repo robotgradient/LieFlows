@@ -34,7 +34,7 @@ class BoundedFlowDynamics(nn.Module):
     def __init__(self, in_features=3, out_features=3, units_per_dim=10):
         super(BoundedFlowDynamics, self).__init__()
 
-        self.register_buffer('_pi', torch.Tensor([math.pi]))
+        self.register_buffer('_bound', torch.Tensor([1.5,1.5,math.pi]))
 
         self.basis_func = models.gaussian
 
@@ -44,11 +44,10 @@ class BoundedFlowDynamics(nn.Module):
 
     def forward(self,x, context=None):
         dx = self.dynamics(x)
-        #
-        # r = x.pow(2).sum(-1).pow(0.5)/self._pi
-        # K = torch.clamp((1-r), min=0,max=1)
-        # dx = torch.einsum('b,bx->bx', K, dx)
 
+        dist = torch.abs(self._bound - torch.abs(x)) * 1/self._bound
+        K = torch.clamp(dist, 0,1)
+        dx = torch.einsum('bx,bx->bx', K, dx)
         return dx
 
 

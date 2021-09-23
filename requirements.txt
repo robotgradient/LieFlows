@@ -6,3 +6,4 @@ pybullet
 tqdm
 gym
 pyvista
+moviepy

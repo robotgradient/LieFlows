@@ -51,7 +51,7 @@ class SO2Matrix(_base.SOMatrixBase):
         if len(small_angle_inds) > 0:
             jac[small_angle_inds] = torch.eye(cls.dim).expand(
                 len(small_angle_inds), cls.dim, cls.dim) \
-                - 0.5 * cls.wedge(phi[small_angle_inds])
+                - 0.5 * cls.wedge(phi[small_angle_inds]).to(phi)
 
         # Otherwise...
         large_angle_mask = small_angle_mask.logical_not()
@@ -69,9 +69,10 @@ class SO2Matrix(_base.SOMatrixBase):
 
             A = hacha * \
                 torch.eye(cls.dim).unsqueeze_(
-                    dim=0).expand_as(jac[large_angle_inds])
-            B = -ha * cls.wedge(phi.__class__([1.]))
+                    dim=0).expand_as(jac[large_angle_inds]).to(hacha)
+            B = -ha.to(phi) * cls.wedge(phi.__class__([1.])).to(phi)
 
+            jac = jac.to(phi)
             jac[large_angle_inds] = A + B
 
         return jac.squeeze_()
