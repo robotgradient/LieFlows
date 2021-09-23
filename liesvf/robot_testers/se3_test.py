@@ -6,7 +6,7 @@ from tqdm import tqdm
 
 import matplotlib.pyplot as plt
 
-from liesvf.env import DariasHandSimple
+from liesvf.environments import DariasHandSimple
 from liesvf.kinematics import DarIASArm
 from liesvf.riemannian_manifolds.liegroups.numpy import SE3
 
