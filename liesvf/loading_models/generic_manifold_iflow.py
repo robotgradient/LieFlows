@@ -32,7 +32,7 @@ class ManifoldSVF(nn.Module):
         if already_tangent and x.shape[-1]==self.manifold.dim:
             x_hat = x
         else:
-            if x.dim()<3:
+            if x.dim()< len(self.manifold.manifold_shape)+1:
                 x = x.unsqueeze(0)
             x_hat = self.manifold.LogMap(x, self.H_origin)
 

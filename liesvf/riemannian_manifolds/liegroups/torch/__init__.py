@@ -5,7 +5,10 @@ from .se2 import SE2Matrix as SE2
 from .so3 import SO3Matrix as SO3
 from .se3 import SE3Matrix as SE3
 
-from .s2 import S2
+from .s2 import S2, S2_V2
 
-__author__ = "Lee Clement"
-__email__ = "lee.clement@robotics.utias.utoronto.ca"
+## Original Version by: Lee Clement. Modified by Julen Urain ##
+__author__ = "Julen Urain"
+__email__ = "urain@ias.informatik.tu-darmstadt.de"
+
+

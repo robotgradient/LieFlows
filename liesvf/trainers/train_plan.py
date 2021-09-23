@@ -91,9 +91,9 @@ def regression_trainer(model, loss_fn, optimizer, dataset, device,
                                 epoch + 1
                             )
 
-            if epoch % vis_freq == (vis_freq - 1):
-                    if vis_fn is not None:
-                        vis_fn(model)
+        if epoch % vis_freq == (vis_freq - 1):
+                if vis_fn is not None:
+                    vis_fn(model)
 
 
     return best_model, best_train_loss

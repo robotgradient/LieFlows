@@ -33,7 +33,7 @@ def visualize_s2_tangent(traj, ax=None, n_samples=20, fig_number=1):
     ax.scatter(xyz[:,0], xyz[:,1], xyz[:,2], color="g", s=100)
 
 
-def visualize_sphere(p):
+def visualize_sphere(p, opacity=1.):
     p.disable_shadows()
     sphere = pv.Sphere(radius=1.)
     silhouette = dict(
@@ -42,9 +42,7 @@ def visualize_sphere(p):
         decimate=0.,
         feature_angle=True,
     )
-    p.add_mesh(sphere, color="tan", smooth_shading=True, silhouette=silhouette, ambient=0.7, opacity=0.8)
-    #p.add_mesh(sphere, color='#FFFFFF', smooth_shading=True, silhouette=silhouette, ambient=0.7)
-
+    p.add_mesh(sphere, color="tan", smooth_shading=True, silhouette=silhouette, ambient=0.7, opacity=opacity)
     return sphere
 
 
