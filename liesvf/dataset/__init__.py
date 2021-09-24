@@ -1,1 +1,1 @@
-from .generic_dataset import VDataset, Dataset
+from .generic_dataset import VDataset, Dataset, SimpleDataset

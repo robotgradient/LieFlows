@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import math
-
+import numpy as np
 from liesvf import network_models as models
 
 from liesvf.utils import get_jacobian
@@ -38,14 +38,17 @@ class SE3NeuralFlows(nn.Module):
 
     def create_flow_sequence(self):
         chain = []
+        perm_i = np.linspace(0, self.dim-1, self.dim, dtype=int)
         for i in range(self.depth):
-            chain.append(self.main_layer())
+            perm_i = np.roll(perm_i, 1)
+            chain.append(self.main_layer(list(perm_i)))
             chain.append(models.RandomPermutations(self.dim))
-        chain.append(self.main_layer())
+        chain.append(self.main_layer(perm_i))
         return chain
 
-    def main_layer(self):
-        return models.LinearSplineLayer(num_bins=self.num_bins, features=self.dim, hidden_features=self.hidden_units)
+    def main_layer(self, order):
+        return models.LinearSplineLayer(num_bins=self.num_bins, features=self.dim,
+                                        hidden_features=self.hidden_units, order=order)
 
 
 

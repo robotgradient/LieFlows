@@ -95,19 +95,9 @@ class SoftMADE(nn.Module):
     def __init__(self,
                  features,
                  hidden_features,
-                 context_features=None,
-                 num_blocks=1,
                  output_multiplier=1,
-                 random_mask=False,
-                 activation=F.relu,
-                 sigma=0.45,
-                 random_init=True):
+                 random_mask=False):
         super().__init__()
-
-
-        ## Context Layer ##
-        if context_features is not None:
-            self.context_layer = nn.Linear(context_features, hidden_features)
 
         ## Initial layer ##
         self.initial_layer = MaskedLinear(
@@ -118,10 +108,10 @@ class SoftMADE(nn.Module):
             is_output=False)
 
 
-        #self.initial_layer = nn.Linear(features, hidden_features)
-        #self.final_layer = nn.Linear(hidden_features, features * output_multiplier)
+        # self.initial_layer = nn.Linear(features, hidden_features)
+        # self.final_layer = nn.Linear(hidden_features, features * output_multiplier)
 
-        ## Final layer ##
+        # Final layer ##
         prev_out_degrees = self.initial_layer.degrees
         self.final_layer = MaskedLinear(
             in_degrees=prev_out_degrees,

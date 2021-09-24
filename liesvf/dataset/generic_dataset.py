@@ -51,6 +51,30 @@ class Dataset(torch.utils.data.Dataset):
         return X, [X_1, int(self.step), X_N, index]
 
 
+class SimpleDataset(torch.utils.data.Dataset):
+    'Characterizes a dataset for PyTorch'
+    def __init__(self, x, y, device):
+        'Initialization'
+        self.dim = x.shape[-1]
+
+        self.x = torch.from_numpy(x).float().to(device)
+        self.y = torch.from_numpy(y).float().to(device)
+
+        self.len = self.x.shape[0]
+
+    def __len__(self):
+        'Denotes the total number of samples'
+        return self.len
+
+    def __getitem__(self, index):
+        'Generates one sample of data'
+
+        X = self.x[index, :]
+        Y = self.y[index, :]
+
+        return X, Y
+
+
 class CycleDataset(torch.utils.data.Dataset):
     'Characterizes a dataset for PyTorch'
     def __init__(self, trajs, device, trajs_phase, steps=20):

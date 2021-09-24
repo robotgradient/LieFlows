@@ -1,15 +1,13 @@
 import torch
 import torch.nn as nn
 import math
-
 from liesvf import network_models as models
-
 from liesvf.utils import get_jacobian
 
 
 
 class S2CouplingFlows(nn.Module):
-    def __init__(self, depth=10, modeltype=1, hidden_units = 128, dim=2):
+    def __init__(self, depth=4, modeltype=1, hidden_units = 100, dim=2):
         super(S2CouplingFlows, self).__init__()
 
         self.depth = depth
@@ -30,20 +28,23 @@ class S2CouplingFlows(nn.Module):
         return z
 
     def pushforward(self, x, context=None):
-        z, J = self.main_map(x)
+        z, J = self.main_map(x, jacobian=True)
         return z, J
 
     def create_flow_sequence(self):
         chain = []
         for i in range(self.depth):
-            chain.append(self.main_layer())
-            #chain.append(models.RandomPermutations(self.dim))
+            chain.append(self.main_layer(i))
         chain.append(self.main_layer())
         return chain
 
-    def main_layer(self):
+    def main_layer(self, i=0):
         if self.layer =='Coupling':
-            mask = torch.arange(0, self.dim) % 2
+            #mask = torch.arange(0, self.dim) % 2
+            if i%2:
+                mask = torch.Tensor([1, 0])
+            else:
+                mask = torch.Tensor([0, 1])
             return models.CouplingLayer( num_inputs= self.dim, num_hidden=self.hidden_units, mask=mask)
         elif self.layer == 'iCoupling':
             return models.IflowCouplingLayer(d = self.dim, intermediate_dim=self.hidden_units)

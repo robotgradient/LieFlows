@@ -39,21 +39,21 @@ class DiffeomorphicNet(nn.Sequential):
                 J_module = module.jacobian(inputs, context)
                 J = torch.matmul(J_module, J)
                 inputs = module(inputs, context)
-                return inputs, J
+            return inputs, J
         elif jacobian==True and mode != 'direct':
             for module in reversed(self._modules.values()):
                 J_module = module.jacobian(inputs, context)
                 J = torch.matmul(J_module, J)
                 inputs = module(inputs, context)
-                return inputs, J
+            return inputs, J
         elif jacobian==False and mode == 'direct':
             for module in self._modules.values():
                 inputs = module(inputs, context)
-                return inputs
+            return inputs
         else:
             for module in reversed(self._modules.values()):
                 inputs = module(inputs, context)
-                return inputs
+            return inputs
 
     def backwards(self, inputs, context):
         for module in reversed(self._modules.values()):
