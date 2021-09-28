@@ -10,7 +10,7 @@ device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Testing parameters ##
 ## trained models: DynamicFlows/Neural Splines
-MODEL = 'DynamicFlows'
+MODEL = 'Neural Splines'
 
 
 if __name__ == '__main__':
