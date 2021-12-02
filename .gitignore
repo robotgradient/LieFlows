@@ -135,4 +135,4 @@ dmypy.json
 .idea
 .idea/*
 
-*no_add/*
+**no_add/
