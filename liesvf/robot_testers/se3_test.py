@@ -118,7 +118,7 @@ def se3_evaluation(policy, device):
         print('Iteration: {}'.format(itr))
         ############################
         q0 = q_inits[itr]
-        q0 = np.random.randn(7)
+        #q0 = np.random.randn(7)
         state = env.reset(q0)
         p.addUserDebugLine([0., 0., -0.189], [1.5, 0., -0.189], [1., 0., 0.])
 

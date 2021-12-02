@@ -14,7 +14,7 @@ device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Testing parameters ##
 ## trained models: DynamicFlows/Neural Splines/MADE
-letter = 'Multi_Models_3'
+letter = 'PShape'
 MODEL = 'Neural Splines'# 'MADE' # 'Neural Splines'
 
 if __name__ == '__main__':
@@ -27,7 +27,6 @@ if __name__ == '__main__':
         load_file = letter + '_piecewise_s2.pth'
     elif MODEL=='MADE':
         load_file = letter + '_made_piecewise_s2.pth'
-
 
 
     load_file = os.path.join(dirname, load_file)

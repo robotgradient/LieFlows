@@ -45,9 +45,10 @@ class BoundedFlowDynamics(nn.Module):
 
     def forward(self,x, context=None):
         dx = self.dynamics(x)
+        safety_alpha = 0.01
 
-        r = x.pow(2).sum(-1).pow(0.5)/self._pi
-        K = torch.clamp((1-r), min=0,max=1)
+        r = x.pow(2).sum(-1).pow(0.5)/(self._pi - safety_alpha)
+        K = torch.clamp(1 - r, 0, 1)
         dx = torch.einsum('b,bx->bx', K, dx)
 
         return dx

@@ -31,7 +31,8 @@ class ScaledLinearDynamics(DynamicSystem):
 
         self.eps = 1e-12
         self.log_vel_scalar = FCNN(dim, 1, 100, act='leaky_relu')
-        self.vel_scalar = lambda x: torch.exp(self.log_vel_scalar(x)) + self.eps
+        self.vel_scalar = lambda x: torch.exp(torch.tanh(self.log_vel_scalar(x))) + self.eps
+        #self.vel_scalar = lambda x: torch.sigmoid(self.log_vel_scalar(x))*5. + self.eps
 
         self.log_var = FCNN(dim, dim, 100, act='leaky_relu')
 

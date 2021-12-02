@@ -7,7 +7,6 @@ from liesvf import network_models as models
 from liesvf.utils import get_jacobian
 
 
-
 class SE3NeuralFlows(nn.Module):
     def __init__(self, depth=7, hidden_units = 128, bins=40):
         super(SE3NeuralFlows, self).__init__()
@@ -27,7 +26,10 @@ class SE3NeuralFlows(nn.Module):
     def forward(self, x, context=None):
         y = x.clone()
         x_c = self.b2c_map(y[:, 3:])
+        x_p = torch.clamp(x[:, :3], -1., 1.)
+        y[:, :3] = x_p
         y[:, 3:] = x_c
+
         z = self.main_map(y, jacobian=False)
         return z
 
@@ -67,10 +69,16 @@ class Sphere2Cube(nn.Module):
         x = inputs/self._norm
 
         norm_x = torch.norm(x,dim=1)
+        mask = norm_x<1.
+
         den = 1/ torch.sqrt(1- norm_x**2)
         y0 = torch.einsum('bd, b->bd',x, den)
-
         y1 = torch.atan(y0)/self._pi_2
+
+        ## Map to zero beyond 1
+        y_out = torch.einsum('b,bx->bx',mask,y1)
+        y_out[y_out != y_out] = 0
+
         return y1
 
     def backwards(self, inputs, context=None):

@@ -71,7 +71,6 @@ class Circle2Box(nn.Module):
         self.register_buffer('_pi_2', torch.Tensor([math.pi/2]))
         self.register_buffer('_pi', torch.Tensor([math.pi]))
 
-
     def jacobian(self, inputs, context = None):
         J_inv = self.jac_inv(inputs)
         return torch.inverse(J_inv)
@@ -111,9 +110,7 @@ class Circle2Box(nn.Module):
         y_out = torch.einsum('b,bx->bx',mask,y1)
         y_out[y_out != y_out] = 0
 
-        #y_out = inputs/(self._norm+0.1)
         return y_out
-
 
     def backwards(self, inputs):
         # y0 = torch.tan(inputs * self._pi)

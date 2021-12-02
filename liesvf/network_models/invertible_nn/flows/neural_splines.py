@@ -66,8 +66,8 @@ class LinearSplineLayer(AutoregressiveTransform):
                  context_features=None,
                  num_blocks=1,
                  random_mask=False,
-                 min_x = -1.1,
-                 max_x = 1.1, order = None,
+                 min_x = -1.,
+                 max_x = 1., order = None,
                  made='softmade'):
         if order is None:
             order = list(range(features))
