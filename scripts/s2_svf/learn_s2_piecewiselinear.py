@@ -17,7 +17,7 @@ device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Training parameters ##
 percentage = .99
-lr = 0.0005
+lr = 0.005
 batch_size = 64
 weight_decay = 1e-10
 nr_epochs = 40000
@@ -25,7 +25,7 @@ clip_gradient=False
 clip_value_grad=0.1
 
 ## Logger & Visualization parameters ##
-letter = 'NShape'
+letter = 'GShape'
 log_dir = 'runs/piecewise_s2'
 dirname = os.path.abspath(os.path.dirname(__file__))
 model_save_file = letter + '_piecewise_s2.pth'
@@ -67,6 +67,6 @@ if __name__ == '__main__':
     logger = SummaryWriter(log_dir=log_dir)
 
     msvf, loss = regression_trainer(model=msvf, loss_fn = loss_fn, optimizer=optimizer, dataset= data.dataset, n_epochs=nr_epochs,
-                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=30, logger= logger, model_save_file=None)
+                       batch_size=batch_size, device=device, vis_fn=visualization_fn, vis_freq=30, logger= logger, model_save_file=model_save_file)
 
     logger.close()

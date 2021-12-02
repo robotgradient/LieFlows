@@ -67,7 +67,7 @@ class MADE(nn.Module):
         self.blocks = nn.ModuleList(blocks)
 
         # Final layer.
-        self.final_layer = MaskedResidualBlock(
+        self.final_layer = MaskedLinear(
             in_degrees=prev_out_degrees,
             out_features=features * output_multiplier,
             autoregressive_features=features,
@@ -105,6 +105,7 @@ class SoftMADE(nn.Module):
             out_features=hidden_features,
             autoregressive_features=features,
             random_mask=random_mask,
+            bias=True,
             is_output=False)
 
 
@@ -127,7 +128,10 @@ class SoftMADE(nn.Module):
 
     def forward(self, inputs, context=None):
         outputs = self.initial_layer(inputs)
-        outputs = torch.tanh(outputs)
+
+        outputs = torch.softmax(-outputs**2, dim=1)
+        #outputs = torch.exp(-outputs**2)
+
         outputs = self.final_layer(outputs)
         return outputs
 

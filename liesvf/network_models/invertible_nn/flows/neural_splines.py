@@ -67,7 +67,8 @@ class LinearSplineLayer(AutoregressiveTransform):
                  num_blocks=1,
                  random_mask=False,
                  min_x = -1.1,
-                 max_x = 1.1, order = None):
+                 max_x = 1.1, order = None,
+                 made='softmade'):
         if order is None:
             order = list(range(features))
 
@@ -76,12 +77,20 @@ class LinearSplineLayer(AutoregressiveTransform):
 
         self.num_bins = num_bins
         self.features = features
-        made = SoftMADE(
-            features=features,
-            hidden_features=hidden_features,
-            output_multiplier=self._output_dim_multiplier(),
-            random_mask=random_mask,
-        )
+        if made =='softmade':
+            made = SoftMADE(
+                features=features,
+                hidden_features=hidden_features,
+                output_multiplier=self._output_dim_multiplier(),
+                random_mask=random_mask,
+            )
+        else:
+            made = MADE(
+                features=features,
+                hidden_features=hidden_features,
+                output_multiplier=self._output_dim_multiplier(),
+                random_mask=random_mask,
+            )
 
         super().__init__(made, order)
 
@@ -91,10 +100,6 @@ class LinearSplineLayer(AutoregressiveTransform):
     def _elementwise(self, inputs, autoregressive_params, inverse=False):
         batch_size = inputs.shape[0]
 
-        # unnormalized_pdf = autoregressive_params.view(batch_size,
-        #                                               self.features,
-        #                                               self._output_dim_multiplier())
-        #
         unnormalized_pdf = autoregressive_params.view(batch_size,
                                                       self._output_dim_multiplier(),
                                                       self.features).transpose(-1,-2)

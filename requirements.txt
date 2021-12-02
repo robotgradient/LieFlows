@@ -7,3 +7,6 @@ tqdm
 gym
 pyvista
 moviepy
+pandas
+seaborn
+tensorboard

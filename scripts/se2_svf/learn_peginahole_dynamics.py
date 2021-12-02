@@ -63,6 +63,6 @@ if __name__ == '__main__':
 
 
     msvf, loss = regression_trainer(model=msvf, loss_fn = loss_fn, optimizer=optimizer, dataset= data.dataset, n_epochs=nr_epochs,
-                       batch_size=batch_size, device=device, vis_fn=None, logger= logger, model_save_file=model_save_file)
+                       batch_size=batch_size, device=device, vis_freq=10, vis_fn=visualization_fn, logger= logger, model_save_file=model_save_file)
 
     logger.close()

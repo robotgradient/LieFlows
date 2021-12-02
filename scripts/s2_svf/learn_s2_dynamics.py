@@ -27,7 +27,7 @@ clip_gradient=True
 clip_value_grad=0.1
 
 ## Logger & Visualization parameters ##
-letter = 'NShape'
+letter = 'GShape'
 log_dir = 'runs/dynamics_s2'
 dirname = os.path.abspath(os.path.dirname(__file__))
 model_save_file = letter + '_dynamic_s2.pth'

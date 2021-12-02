@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 percentage = .99
 lr = 0.1
 batch_size = 64
-weight_decay = 0.00000000000000000000001
+weight_decay = 10e-10
 nr_epochs = 40000
 clip_gradient=True
 clip_value_grad=0.1

@@ -1,5 +1,7 @@
 import os
 import torch
+import numpy as np
+
 from liesvf import loading_models, riemannian_manifolds, dynamic_systems
 from liesvf.network_models.tangent_inn import S2_models
 from liesvf.utils import load_torch_file, to_torch,to_numpy
@@ -11,23 +13,36 @@ from liesvf import visualization as vis
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Testing parameters ##
-## trained models: DynamicFlows/Neural Splines
-letter = 'NShape'
-MODEL = 'DynamicFlows'
-
+## trained models: DynamicFlows/Neural Splines/MADE
+letter = 'Multi_Models_3'
+MODEL = 'Neural Splines'# 'MADE' # 'Neural Splines'
 
 if __name__ == '__main__':
     ## Load Vector Field Model ##
     dirname = os.path.abspath(os.path.dirname(__file__)+'/../')
 
-    load_file = letter + '_dynamic_s2.pth'
+    if MODEL=='DynamicFlows':
+        load_file = letter + '_dynamic_s2.pth'
+    elif MODEL=='Neural Splines':
+        load_file = letter + '_piecewise_s2.pth'
+    elif MODEL=='MADE':
+        load_file = letter + '_made_piecewise_s2.pth'
+
+
+
     load_file = os.path.join(dirname, load_file)
     load_params = load_torch_file(load_file)
 
 
     manifold = riemannian_manifolds.S2Map()
     dynamics = dynamic_systems.ScaledLinearDynamics(dim = 2)
-    bijective_mapping = S2_models.S2DynamicFlows()
+
+    if MODEL=='DynamicFlows':
+        bijective_mapping = S2_models.S2DynamicFlows()
+    elif MODEL=='Neural Splines':
+        bijective_mapping = S2_models.S2NeuralFlows()
+    elif MODEL=='MADE':
+        bijective_mapping = S2_models.S2NeuralFlows(made='made')
 
     model = loading_models.MainManifoldModel(device=device, bijective_map = bijective_mapping, dynamics = dynamics, manifold= manifold)
     msvf = model.get_msvf()
@@ -44,9 +59,14 @@ if __name__ == '__main__':
 
     p_xyz = torch.Tensor(sphere.points.tolist()).to(device)
     dx = msvf(p_xyz)
+    dx_norm = dx.pow(2).sum(-1).pow(.5)
     dx = to_numpy(dx)
+    dx_norm = to_numpy(dx_norm)
+    dx = dx/dx_norm[:,None]
+    #alpha_clip = np.clip(dx_norm, 0, 1)
+    #dx = dx*alpha_clip[:,None]
 
-    sphere.vectors = dx * 0.05
+    sphere.vectors = dx*0.1
     p.add_mesh(sphere.arrows, color='black')
 
     ## Trajectories From Data ##
