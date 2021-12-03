@@ -1,3 +1,4 @@
+import math
 import os
 import torch
 import numpy as np
@@ -11,11 +12,12 @@ from liesvf import visualization as vis
 
 ## Device: CPU/GPU ##
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
+device = 'cpu'
 
 ## Testing parameters ##
 ## trained models: DynamicFlows/Neural Splines/MADE
-letter = 'PShape'
-MODEL = 'Neural Splines'# 'MADE' # 'Neural Splines'
+letter = 'NShape'
+MODEL = 'DynamicFlows'# 'MADE' # 'Neural Splines'
 
 if __name__ == '__main__':
     ## Load Vector Field Model ##
@@ -74,6 +76,20 @@ if __name__ == '__main__':
     for i in range(len(data.train_data)):
         trj = data.train_data[i]
         vis.visualize_s2_tangent_trajectories(p,trj)
+
+    ## Generate Trajectories
+    N = 100
+    r0 = torch.ones(N)*(math.pi - 0.1)
+    theta0 = torch.linspace(-math.pi, math.pi, N)
+    x0 = r0*torch.cos(theta0)
+    y0 = r0*torch.sin(theta0)
+    xy = torch.cat((x0[:, None], y0[:,None]),1)
+    trjs = msvf.generate_trj(x0=xy, T=200)
+    trjs = to_numpy(trjs)
+    for i in range(trjs.shape[1]):
+        trj = trjs[:, i, :]
+        vis.visualize_s2_tangent_trajectories(p,trj, color='b')
+
 
     p.show()
 

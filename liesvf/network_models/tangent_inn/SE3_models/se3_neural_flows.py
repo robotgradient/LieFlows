@@ -75,11 +75,16 @@ class Sphere2Cube(nn.Module):
         y0 = torch.einsum('bd, b->bd',x, den)
         y1 = torch.atan(y0)/self._pi_2
 
+        ## Sphere to Cube
+        # max_x = torch.max(torch.abs(x), 1)
+        # r = x.pow(2).sum(-1).pow(0.5)
+        # y1 = x * r[:, None] / max_x.values[:, None]
+
         ## Map to zero beyond 1
         y_out = torch.einsum('b,bx->bx',mask,y1)
         y_out[y_out != y_out] = 0
 
-        return y1
+        return y_out
 
     def backwards(self, inputs, context=None):
         y0 = torch.tan(inputs * self._pi_2)

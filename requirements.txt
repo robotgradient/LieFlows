@@ -9,4 +9,3 @@ pyvista
 moviepy
 pandas
 seaborn
-tensorboard

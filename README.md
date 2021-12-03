@@ -1,16 +1,33 @@
-# LieFlows
+# Lie-SVF
+Code repository in relation with the ICRA-RA-L 2022 submission 'Learning Stable Vector Fields
+on Lie Groups'.
 
-Install requirements and LieSVF
 
-Pinnochio and Pytorch
+## Installation
 
+Build Conda Environment
+
+```angular2html
+ conda env create -f environment.yml
 ```
-conda install pinocchio -c conda-forge
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
-```
 
-LieSVF and requirements
+activate environment and install library
 
 ```
 pip install -e .
+```
+
+## Examples
+
+### S2 Stable Vector Fields
+```angular2html
+python scripts/s2_svf/test_s2_model/visualize_vector_field.py
+```
+### SE(2) Stable Vector Fields
+```angular2html
+python scripts/se2_svf/test_trained_models/load_and_test.py
+```
+### SE(3) Stable Vector Fields
+```angular2html
+python scripts/se3_svf/test_trained_models/load_and_test.py
 ```

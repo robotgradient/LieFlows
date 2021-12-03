@@ -7,11 +7,11 @@ from liesvf.robot_testers import se3_evaluation
 
 ## Device: CPU/GPU ##
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
+device = 'cpu'
 
 ## Testing parameters ##
 ## trained models: DynamicFlows/Neural Splines
 MODEL = 'DynamicFlows'
-
 
 if __name__ == '__main__':
     ## Load Vector Field Model ##

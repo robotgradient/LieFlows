@@ -14,9 +14,9 @@ from liesvf import visualization as vis
 device = torch.device('cuda:' + str(0) if torch.cuda.is_available() else 'cpu')
 
 ## Training Parameters ##
-data_percentage = .1
+data_percentage = .2
 batch_size = 100
-lr = 0.0001
+lr = 0.001
 weight_decay = 0.00001
 nr_epochs = 40000
 clip_gradient=True

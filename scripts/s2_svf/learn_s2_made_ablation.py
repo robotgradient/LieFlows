@@ -25,7 +25,7 @@ clip_gradient=True
 clip_value_grad=0.1
 
 ## Logger & Visualization parameters ##
-letter = 'GShape'
+letter = 'NShape'
 log_dir = 'runs/piecewise_made_s2'
 dirname = os.path.abspath(os.path.dirname(__file__))
 model_save_file = letter + '_made_piecewise_s2.pth'
