@@ -2,6 +2,7 @@
 The following code repository implements stable vector fields on Lie groups for Robotics.
 Code repository in relation with the ICRA 2023-RA-L submission 'Learning Stable Vector Fields
 on Lie Groups'.
+
 [[Preprint]](https://arxiv.org/pdf/2110.11774.pdf)
 
 
