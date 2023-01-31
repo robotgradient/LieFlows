@@ -1,6 +1,6 @@
 # Pytorch Implementation of Stable Vector Fields on Lie Groups.
 The following code repository implements stable vector fields on Lie groups for Robotics.
-Code repository in relation with the ICRA 2023-RA-L submission 'Learning Stable Vector Fields
+Code repository in relation with ICRA RAL paper 'Learning Stable Vector Fields
 on Lie Groups'.
 
 [[Preprint]](https://arxiv.org/pdf/2110.11774.pdf)
@@ -45,11 +45,16 @@ RA-L 2022.
 [[journal]](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9935105)
 
 ```
-@article{urain2022liesvf,
-  title={Learning Stable Vector Fields on Lie Groups},
+@article{urain2022learning,
+  title={Learning stable vector fields on lie groups},
   author={Urain, Julen and Tateo, Davide and Peters, Jan},
-  journal={IEEE Robotics and Automation Letters (RA-L)},
-  year={2022}
+  journal={IEEE Robotics and Automation Letters},
+  volume={7},
+  number={4},
+  pages={12569--12576},
+  year={2022},
+  publisher={IEEE}
+}
 ```
 
 
