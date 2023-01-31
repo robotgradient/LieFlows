@@ -6,6 +6,7 @@ on Lie Groups'.
 [[Preprint]](https://arxiv.org/pdf/2110.11774.pdf)
 [[Webpage]](https://sites.google.com/view/svf-on-lie-groups/?pli=1)
 
+<img src="figures/main.gif" alt="main" style="width:800px;"/>
 
 ## Installation
 
