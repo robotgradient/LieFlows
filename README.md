@@ -36,3 +36,24 @@ python scripts/se2_svf/test_trained_models/load_and_test.py
 ```angular2html
 python scripts/se3_svf/test_trained_models/load_and_test.py
 ```
+
+## References
+
+[1] Julen Urain*, Davide Tateo, Jan Peters. 
+"Learning Stable Vector Fields on Lie Groups" 
+RA-L 2022.
+[[arxiv]](https://arxiv.org/pdf/2209.03855.pdf)
+
+```
+@article{urain2022liesvf,
+  title={Learning Stable Vector Fields on Lie Groups},
+  author={Urain, Julen and Tateo, Davide and Peters, Jan},
+  journal={IEEE Robotics and Automation Letters (RA-L)},
+  year={2022}
+```
+
+
+### Contact
+
+If you have any questions or find any bugs, please let me know: [Julen Urain](http://robotgradient.com/) julen[at]robot-learning[dot]de
+
