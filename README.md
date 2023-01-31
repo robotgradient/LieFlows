@@ -26,16 +26,19 @@ pip install -e .
 
 ### Learning Stable Vector Fields in S2 manifold
 We visualize the globally stable vector field in the surface of a 3D sphere.
+<img src="figures/s2.png" alt="s2" style="width:800px;"/>
 ```angular2html
 python scripts/s2_svf/test_s2_model/visualize_vector_field.py
 ```
 ### Learning Stable Vector Fields for planar peg-in-a-hole
 We visualize the performance of a 5 DoF planar robot performing a peg-in-a-hole task by the combination of SE(2) stable vector field with Operational Space Control
+<img src="figures/se2.png" alt="se2" style="width:800px;"/>
 ```angular2html
 python scripts/se2_svf/test_trained_models/load_and_test.py
 ```
 ### Learning Stable Vector Fields for pouring tasks
 We visualize the performance of a 7 DoF robot arm perfoming a learned pouring task combining a SE(3) Stable Vector Field with an Operational Space Controller.
+<img src="figures/se3.png" alt="se3" style="width:800px;"/>
 ```angular2html
 python scripts/se3_svf/test_trained_models/load_and_test.py
 ```
