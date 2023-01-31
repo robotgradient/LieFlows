@@ -42,7 +42,7 @@ python scripts/se3_svf/test_trained_models/load_and_test.py
 [1] Julen Urain*, Davide Tateo, Jan Peters. 
 "Learning Stable Vector Fields on Lie Groups" 
 RA-L 2022.
-[[arxiv]](https://arxiv.org/pdf/2209.03855.pdf)
+[[arxiv]](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9935105)
 
 ```
 @article{urain2022liesvf,
