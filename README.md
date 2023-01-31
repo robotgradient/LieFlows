@@ -4,7 +4,6 @@ Code repository in relation with the ICRA 2023-RA-L submission 'Learning Stable 
 on Lie Groups'.
 
 [[Preprint]](https://arxiv.org/pdf/2110.11774.pdf)
-[[journal]](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9935105)
 [[Webpage]](https://sites.google.com/view/svf-on-lie-groups/?pli=1)
 
 <img src="figures/main.gif" alt="main" style="width:800px;"/>
