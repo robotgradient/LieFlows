@@ -30,7 +30,7 @@ We visualize the globally stable vector field in the surface of a 3D sphere.
 python scripts/s2_svf/test_s2_model/visualize_vector_field.py
 ```
 ### Learning Stable Vector Fields for planar peg-in-a-hole
-We visualize the performance of a learned SE(2) stable vector field for the task of peg-in-a-hole.
+We visualize the performance of a 5 DoF planar robot performing a peg-in-a-hole task by the combination of SE(2) stable vector field with Operational Space Control
 ```angular2html
 python scripts/se2_svf/test_trained_models/load_and_test.py
 ```
@@ -42,7 +42,7 @@ python scripts/se3_svf/test_trained_models/load_and_test.py
 
 ## References
 
-[1] Julen Urain*, Davide Tateo, Jan Peters. 
+[1] Julen Urain, Davide Tateo, Jan Peters. 
 "Learning Stable Vector Fields on Lie Groups" 
 RA-L 2022.
 [[journal]](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=9935105)
