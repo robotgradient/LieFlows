@@ -1,5 +1,5 @@
 # Pytorch Implementation of Stable Vector Fields on Lie Groups.
-The following code repository implements stable vector fields on Lie groups for Robotics.
+The following code repository implements stable vector fields on Lie groups for robot motion generation and control.
 Code repository in relation with ICRA RAL paper 'Learning Stable Vector Fields
 on Lie Groups'.
 
